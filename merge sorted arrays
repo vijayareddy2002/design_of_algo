@@ -1,0 +1,33 @@
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+int k=m+n;
+    int d[k];
+    int i=0,j=0,v=0;
+    while(i<m && j<n){
+        if(nums1[i]<=nums2[j]){
+            d[v]=nums1[i];
+            i++;
+        }
+        else{
+            d[v]=nums2[j];
+            j++;
+        }
+     v++;
+    }
+    if(i==m){
+        while(j<n){
+            d[v]=nums2[j];
+            v++;
+            j++;
+        }
+    }
+    if(j==n){
+        while(i<m){
+            d[v]=nums1[i];
+            v++;
+            i++;
+        }
+    }
+        for(int h=0;h<m+n;h++){
+            nums1[h]=d[h];
+        }
+    }
