@@ -1,0 +1,18 @@
+class Solution:
+    def sort_lists(self,lists1):
+        for i in range(0,len(lists1)):
+            for j in range(0,len(lists1)):
+                if(lists1[i][0]>lists1[j][0]){
+                    lists1[i],lists1[j]=lists1[j],lists1[i]
+                }
+        return lists1                
+    def mergeSimilarItems(self, items1: List[List[int]], items2: List[List[int]]) -> List[List[int]]:
+        #bublesort with the help of the value
+        items1=sort_lists(items1)
+        items2=sort_lists(items2)
+        m=min(len(items1),len(items2))
+        l=[]
+        i=0,j=0;
+        while(i<len(items1)&& j<len(items1)):
+               if(l[i]==l[j]):
+                    
