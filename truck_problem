@@ -1,0 +1,38 @@
+int maximumUnits(int** boxTypes, int boxTypesSize, int* boxTypesColSize, int truckSize){
+int i=0,j=0;
+    for(i=0;i<boxTypesSize;i++){
+        for(j=0;j<boxTypesSize;j++){
+            if(boxTypes[i][1] > boxTypes[j][1]){
+               int t=boxTypes[i][0];
+                int a=boxTypes[i][1];
+                boxTypes[i][0]=boxTypes[j][0];
+                 boxTypes[i][1]=boxTypes[j][1];
+                boxTypes[j][0]=t;
+                 boxTypes[j][1]=a;
+            }
+        }
+    }
+    int x[boxTypesSize];
+    for(int g=0;g<boxTypesSize;g++){
+        x[g]=0;
+    }
+    int u=truckSize;
+    for(j=0;j<boxTypesSize;j++){
+        if(boxTypes[j][0]<=u){
+            x[j]=boxTypes[j][0];
+            u=u-boxTypes[j][0];
+        }
+        else{
+            break;
+        }
+    }
+    if(j<boxTypesSize){
+        x[j]=u;
+    }
+    // product
+    int s=0;
+        for(int k=0;k<boxTypesSize;k++){
+            s=s+(x[k]*boxTypes[k][1]);
+        }
+    return s;
+}
