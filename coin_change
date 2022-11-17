@@ -1,0 +1,48 @@
+int minimum(int a ,int b){
+    if(a<b)
+        return a;
+    else
+        return b;
+}
+int coinChange(int* coins, int coinsSize, int amount){
+int arr[coinsSize][amount+1];
+   int i,j,z,k;
+    for(i=0;i<coinsSize;i++){
+        for(j=0;j<=amount;j++){
+            if(i==0){
+                if(j%coins[i]!=0){
+                    arr[i][j]=-1;
+                }
+                else{
+                    arr[i][j]=j/coins[i];
+                }
+            }
+            else{
+                if(j<coins[i]){
+                    arr[i][j]=arr[i-1][j];
+                }
+                else{
+                    if(arr[i][j-coins[i]]!=-1){
+                        z=arr[i][j-coins[i]]+1;
+                        if(arr[i-1][j]!=-1){
+                            k=minimum(z,arr[i-1][j]);
+                            arr[i][j]=k;
+                        }
+                        else{
+                            arr[i][j]=z;
+                        }
+                    }
+                    else{
+                        if(arr[i-1][j]!=-1){
+                            arr[i][j]=arr[i-1][j];
+                        }
+                        else{
+                            arr[i][j]=-1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return arr[coinsSize-1][amount];
+}
